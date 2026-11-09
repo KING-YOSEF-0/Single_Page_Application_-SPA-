@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study & Work | KING_YOSEF_</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Fira Code for that hacker/programmer feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Background Grid Effect -->
+    <div class="grid-bg"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-symbol">></span> Study<span class="blink">_</span>Work
+        </div>
+        
+        <nav class="nav-menu">
+            <button class="nav-item active" data-target="grade-calc">
+                <span class="nav-num">01.</span> Grade Calculator
+            </button>
+            <button class="nav-item" data-target="pomodoro">
+                <span class="nav-num">02.</span> Pomodoro Timer
+            </button>
+            <button class="nav-item" data-target="text-analyzer">
+                <span class="nav-num">03.</span> Text Analyzer
+            </button>
+            <button class="nav-item" data-target="citation">
+                <span class="nav-num">04.</span> Cite Formatter
+            </button>
+            <button class="nav-item" data-target="typing-test">
+                <span class="nav-num">05.</span> Typing Speed
+            </button>
+            <button class="nav-item" data-target="cv-builder">
+                <span class="nav-num">06.</span> CV Builder
+            </button>
+        </nav>
+
+        <div class="dev-profile">
+            <div class="status-indicator"><span class="dot"></span> System Online</div>
+            <p>DEV: <span class="highlight">KING_YOSEF_</span></p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Study & Work <span class="badge">v1.0.0</span></h1>
+            <p class="subtitle">Advanced productivity suite for normal people, not just devs.</p>
+        </header>
+
+        <!-- 01. Percentage / Grade Calculator -->
+        <section id="grade-calc" class="tool-panel active">
+            <div class="panel-header">
+                <h2>Percentage / Grade Calculator</h2>
+                <p>Calculate your marks into percentages and GPA-style grades.</p>
+            </div>
+            <div class="card">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Marks Obtained</label>
+                        <input type="number" id="marks-obtained" placeholder="e.g. 85">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Marks</label>
+                        <input type="number" id="total-marks" placeholder="e.g. 100">
+                    </div>
+                </div>
+                <button class="primary-btn" onclick="calculateGrade()">Calculate</button>
+                
+                <div id="grade-result" class="result-box hidden">
+                    <div class="res-item">
+                        <span class="res-label">Percentage</span>
+                        <span class="res-value" id="res-percentage">0%</span>
+                    </div>
+                    <div class="res-item">
+                        <span class="res-label">Grade (GPA-style)</span>
+                        <span class="res-value" id="res-grade">-</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Study Timer (Pomodoro) -->
+        <section id="pomodoro" class="tool-panel">
+            <div class="panel-header">
+                <h2>Study Timer (Pomodoro)</h2>
+                <p>Focus for 25 minutes, track your sessions, and take breaks.</p>
+            </div>
+            <div class="card timer-card">
+                <div class="timer-display" id="timer-display">25:00</div>
+                <div class="timer-controls">
+                    <button class="primary-btn" onclick="startTimer()">Start</button>
+                    <button class="secondary-btn" onclick="pauseTimer()">Pause</button>
+                    <button class="secondary-btn" onclick="resetTimer()">Reset</button>
+                </div>
+                <div class="session-tracker">
+                    <p>Sessions Logged: <span id="session-count">0</span></p>
+                    <button class="text-btn" onclick="logSession()">+ Log Current Session</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Word/Character Counter + Reading Time -->
+        <section id="text-analyzer" class="tool-panel">
+            <div class="panel-header">
+                <h2>Text Analyzer</h2>
+                <p>Count words, characters, and estimate reading time instantly.</p>
+            </div>
+            <div class="card">
+                <textarea id="text-input" placeholder="Paste your essay, article, or text here..." rows="8"></textarea>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-label">Words</span>
+                        <span class="stat-value" id="word-count">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Characters</span>
+                        <span class="stat-value" id="char-count">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Reading Time</span>
+                        <span class="stat-value" id="read-time">0m 0s</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Citation / Reference Formatter -->
+        <section id="citation" class="tool-panel">
+            <div class="panel-header">
+                <h2>Citation Formatter</h2>
+                <p>Generate basic APA or MLA references for your papers.</p>
+            </div>
+            <div class="card">
+                <div class="input-group">
+                    <label>Author (Last Name, First Name)</label>
+                    <input type="text" id="cite-author" placeholder="e.g. Turing, Alan">
+                </div>
+                <div class="input-group">
+                    <label>Year of Publication</label>
+                    <input type="text" id="cite-year" placeholder="e.g. 1950">
+                </div>
+                <div class="input-group">
+                    <label>Title of Work</label>
+                    <input type="text" id="cite-title" placeholder="e.g. Computing Machinery and Intelligence">
+                </div>
+                <div class="input-group">
+                    <label>Publisher / Website</label>
+                    <input type="text" id="cite-source" placeholder="e.g. Mind Journal">
+                </div>
+                <div class="btn-row">
+                    <button class="primary-btn" onclick="formatCitation('APA')">Format APA</button>
+                    <button class="primary-btn" onclick="formatCitation('MLA')">Format MLA</button>
+                </div>
+                <div id="cite-result" class="result-box code-font hidden"></div>
+            </div>
+        </section>
+
+        <!-- 05. Typing Speed Test -->
+        <section id="typing-test" class="tool-panel">
+            <div class="panel-header">
+                <h2>Typing Speed Test</h2>
+                <p>Test your WPM and accuracy. Type the text below to begin.</p>
+            </div>
+            <div class="card">
+                <div class="target-text code-font" id="target-text">The quick brown fox jumps over the lazy dog. Programming is the art of telling another human what one wants the computer to do.</div>
+                <textarea id="typing-input" placeholder="Type here to start the timer..." rows="4"></textarea>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-label">WPM</span>
+                        <span class="stat-value" id="typing-wpm">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Accuracy</span>
+                        <span class="stat-value" id="typing-acc">100%</span>
+                    </div>
+                </div>
+                
+                <div class="btn-row" style="margin-top: 1rem;">
+                    <button class="secondary-btn" onclick="resetTypingTest()">Reset Test</button>
+                    <button class="primary-btn" onclick="generateCertificate()">Generate WPM Certificate</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. Resume / CV Builder -->
+        <section id="cv-builder" class="tool-panel">
+            <div class="panel-header">
+                <h2>Resume / CV Builder</h2>
+                <p>Fill the form to generate a clean, printable template.</p>
+            </div>
+            <div class="cv-layout">
+                <div class="card form-side">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="cv-name" placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label>Job Title</label>
+                        <input type="text" id="cv-role" placeholder="Software Engineer">
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="text" id="cv-email" placeholder="john@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Professional Summary</label>
+                        <textarea id="cv-summary" rows="3" placeholder="A brief summary of your skills and goals..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Experience (One per line)</label>
+                        <textarea id="cv-experience" rows="4" placeholder="Software Engineer at TechCorp (2020-Present)&#10;Bachelor of Science in CS (2016-2020)"></textarea>
+                    </div>
+                    <button class="primary-btn" onclick="generateCV()">Generate Preview</button>
+                </div>
+
+                <div class="preview-side">
+                    <div id="cv-preview" class="cv-document">
+                        <h2 id="prev-name">John Doe</h2>
+                        <h3 id="prev-role">Software Engineer</h3>
+                        <p class="prev-contact" id="prev-email">john@example.com</p>
+                        <hr>
+                        <h4>Professional Summary</h4>
+                        <p id="prev-summary">...</p>
+                        <h4>Experience & Education</h4>
+                        <ul id="prev-exp"></ul>
+                    </div>
+                    <button class="primary-btn full-width" onclick="window.print()">Print / Save as PDF</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
